@@ -328,6 +328,8 @@
   .hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
   .hamburger.active span:nth-child(2) { opacity: 0; }
   .hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .hamburger { position: relative; z-index: 191; }
+  header.site.menu-open { background: rgb(11, 11, 13); backdrop-filter: none; -webkit-backdrop-filter: none; }
   .mobile-menu {
     position: fixed;
     inset: 80px 0 0 0;
@@ -2484,6 +2486,8 @@
   var ham = document.getElementById('hamburger');
   var menu = document.getElementById('mobileMenu');
   function setMenu(open) {
+    ham.closest('header').classList.toggle('menu-open', open);
+    if (open) menu.style.top = ham.closest('header').getBoundingClientRect().bottom + 'px';
     menu.classList.toggle('open', open);
     ham.classList.toggle('active', open);
     ham.setAttribute('aria-expanded', open);
